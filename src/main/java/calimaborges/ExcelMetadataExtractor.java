@@ -9,19 +9,17 @@ import java.net.URISyntaxException;
 
 public class ExcelMetadataExtractor {
 
-    private final String filename;
+    private final File file;
     private HSSFWorkbook workbook;
 
-    public ExcelMetadataExtractor(String filename) {
-        this.filename = filename;
+    public ExcelMetadataExtractor(File file) {
+        this.file = file;
     }
 
     public void prepare() throws URISyntaxException, IOException {
         workbook = new HSSFWorkbook(
                 new FileInputStream(
-                        new File(
-                                ClassLoader.getSystemResource(filename).toURI()
-                        )
+                        file
                 )
         );
     }
